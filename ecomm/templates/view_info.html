@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load get_id %}
+{% block content %}
+
+<!-- {{content}}
+Used if we want to display the list of tuple in the webpage -->
+
+<table class="table table-bordered">
+    <tr>
+        <td>ID</td>
+        <td>Name</td>
+        <td>Price</td>
+        <td>More Info</td>
+    </tr>
+    <!-- tr stands for table row.  -->
+    {% for row in content %}
+    <tr>
+        <!-- td used for a particular cell in the row.  -->
+        {% for item in row %}
+        <td>
+            {{item}}
+        </td>
+        {% endfor %}
+        <td>
+            <a href="/more_info/?id={{ row | get_id }}">Click here</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
