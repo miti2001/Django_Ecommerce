@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load get_id_dict %}
+{% block content %}
+ {{content}}
+
+ <table class="table table-bordered">
+    {% for key,value in content.items %}
+    <!-- tr stands for table row.  -->
+    <tr>
+        <!-- td used for a particular cell in the row.  -->
+        
+        <td>
+            {{ key }}
+        </td>
+        <td>
+            {{ value }}
+        </td>
+       
+    </tr>
+    {% endfor %}
+</table>
+
+<button><a href="/buy_now/?id2={{ content|get_id_dict }}">Buy Now</a></button>
+{% endblock %}
