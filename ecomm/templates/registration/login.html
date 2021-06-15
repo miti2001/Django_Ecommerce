@@ -1,0 +1,11 @@
+<div class="ex1">
+    {% if user.is_authenticated %}
+    <h4>You are already logged in...</h4>
+    {% else %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Login In</button>
+    </form> 
+    {% endif %}
+</div>

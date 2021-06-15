@@ -1,10 +1,39 @@
 from django import forms
-from .forms import FeedbackForm
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.shortcuts import render, HttpResponse, redirect
 from .models import ProductInformation, Feedback
-from .forms import FeedbackForm
+from .forms import FeedbackForm, SignUpForm
 
 # Create your views here.
+
+def welcome(request):
+    return redirect('login')
+
+def signup(request):
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            userObj = form.cleaned_data
+            username = userObj['username']
+            email = userObj['email']
+            password = userObj['password']
+            if not(User.objects.filter(username=username).exists()):
+                user = form.save()
+                user.refresh_from_db()
+                user.save()
+                user = authenticate(username=username, password=password)
+                login(request,user)
+                return redirect('home2')
+            else:
+                raise forms.ValidationError('Looks like a username with that email or password already exists')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {
+        'form': form
+        })
+
+
 def feedback(request):
     if request.method == 'GET':
         form = FeedbackForm
@@ -13,6 +42,9 @@ def feedback(request):
         })
     elif request.method == 'POST':
         form = FeedbackForm(request.POST)
+        #user_email=form.cleaned_data['email']
+        user_email=form['email'].value()
+        print(user_email)
         if form.is_valid():
             form.save()
             return redirect('home2')

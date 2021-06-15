@@ -13,14 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django import contrib
+from django import urls
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf.urls import url
 from ecomm import views
 
 urlpatterns = [
+    path('signup/',views.signup, name='signup'),
+    path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    path('',views.home, name='home2'),
+    url('^$',views.welcome, name='welcome'),
+    path('home',views.home, name='home2'),
     path('feedback',views.feedback, name='feedback'),
     url('view_info',views.view_info),
     url('more_info',views.more_info),
