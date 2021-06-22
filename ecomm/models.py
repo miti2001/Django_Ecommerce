@@ -20,7 +20,7 @@ class Feedback(models.Model):
 class ProductInformation(models.Model):
     #choices are shown as tuples
     CATEGORY_CHOICES=(
-        ('Electronincs','Electronincs'),
+        ('Electronics','Electronics'),
         ('Clothing','Clothing'),
         ('Cosmetics','Cosmetics'),
         ('Stationary','Stationary'),

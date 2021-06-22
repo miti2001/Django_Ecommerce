@@ -1,39 +1,68 @@
 from django import forms
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import render, HttpResponse, redirect
 from .models import ProductInformation, Feedback
 from .forms import FeedbackForm, SignUpForm
 
 # Create your views here.
 
-def welcome(request):
+# def welcome(request):
+#     return redirect('login')
+
+def user_logout(request):
+    logout(request)
     return redirect('login')
 
-def signup(request):
-    if request.method == "POST":
-        form = SignUpForm(request.POST)
-        if form.is_valid():
-            userObj = form.cleaned_data
-            username = userObj['username']
-            email = userObj['email']
-            password = userObj['password']
-            if not(User.objects.filter(username=username).exists()):
-                user = form.save()
-                user.refresh_from_db()
-                user.save()
-                user = authenticate(username=username, password=password)
-                login(request,user)
+def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('home2')
+    else: 
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
                 return redirect('home2')
             else:
-                raise forms.ValidationError('Looks like a username with that email or password already exists')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {
-        'form': form
-        })
+                messages.info(request, 'Username OR Password is incorrect')
 
+        return render(request, 'registration/login.html')
 
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect('home2')
+    else: 
+        if request.method == "POST":
+            form = SignUpForm(request.POST)
+            #form = UserCreationForm()
+            if form.is_valid():
+                userObj = form.cleaned_data
+                username = userObj['username']
+                email = userObj['email']
+                password = userObj['password1']
+                if not(User.objects.filter(username=username).exists()):
+                    user = form.save()
+                    user.refresh_from_db()
+                    user.save()
+                    user = authenticate(username=username, password=password)
+                    login(request,user)
+                    return redirect('home2')
+                else:
+                    raise forms.ValidationError('Looks like a username with that email or password already exists')
+        else:
+            form = SignUpForm()
+        return render(request, 'registration/signup.html', {
+            'form': form
+            })
+
+@login_required(login_url='login')
 def feedback(request):
     if request.method == 'GET':
         form = FeedbackForm
@@ -42,13 +71,14 @@ def feedback(request):
         })
     elif request.method == 'POST':
         form = FeedbackForm(request.POST)
-        #user_email=form.cleaned_data['email']
+        #user_email=form.cleaned_data.get['email']
         user_email=form['email'].value()
         print(user_email)
         if form.is_valid():
             form.save()
             return redirect('home2')
 
+@login_required(login_url='login')
 def buy_now(request):
     if( request.method == 'GET'):
         id_from_url = request.GET.get('id2')
@@ -84,6 +114,7 @@ def buy_now(request):
                 'final_price': final_price,
             })
 
+@login_required(login_url='login')
 def more_info(request):
     id_from_url=request.GET.get('id')
     content = ProductInformation.objects.filter(id=id_from_url).values()
@@ -98,6 +129,7 @@ def view_info(request):
         'content':content
         })
 
+@login_required(login_url='login')
 def home(request):
     name="Miti"
     return render(request, 'home.html', {

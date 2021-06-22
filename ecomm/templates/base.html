@@ -20,6 +20,8 @@
       <input type="text" class="form-control" placeholder="Username">
     </div>    
   </form>
+  <span style="color: aliceblue;">Hello, {{request.user}}</span>
+  <span><a href="{% url 'logout' %}">Logout</a></span>
 </nav>
 <br>
 

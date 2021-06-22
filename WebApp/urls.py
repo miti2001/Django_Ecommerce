@@ -22,9 +22,12 @@ from ecomm import views
 
 urlpatterns = [
     path('signup/',views.signup, name='signup'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    url('^$',views.user_login, name='login'),
+    path('logout/',views.user_logout, name='logout'),
+    # something didn't work with the method used below
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
-    url('^$',views.welcome, name='welcome'),
+    #url('^$',views.welcome, name='welcome'),
     path('home',views.home, name='home2'),
     path('feedback',views.feedback, name='feedback'),
     url('view_info',views.view_info),
