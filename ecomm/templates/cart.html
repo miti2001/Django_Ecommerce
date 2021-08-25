@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h3>Cart</h3> 
+<br> {{order.get_cart_total}} <b>{{order.get_cart_items}}</b>
+<br>
+{% for item in  items %}
+    {{item.product.name}}
+    {{item.product.price}}
+    {{item.quantity}}
+    <br>
+    <br>
+    {{item.get_total}}
+{% endfor %}
+{% endblock %}

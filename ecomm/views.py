@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, HttpResponse, redirect
-from .models import ProductInformation, Feedback
+from .models import ProductInformation, Feedback, Order, OrderItem
 from .forms import FeedbackForm, SignUpForm
 
 # Create your views here.
@@ -136,5 +136,12 @@ def home(request):
         'name':name
     })
 
+@login_required(login_url='login')
+def cart(request):
+    customer = request.user.customer
+    order, created = Order.objects.get_or_create(customer=customer, complete=False)
+    item = order.orderitem_set.all()
+    context={'items':item, 'order': order}
+    return render(request, 'cart.html', context)
     # Usually render takes 3 parameters
     # 3rd para is used, if we want to pass values from backend to frontend

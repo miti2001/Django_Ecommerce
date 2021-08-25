@@ -28,6 +28,7 @@ urlpatterns = [
     # path('accounts/', include('django.contrib.auth.urls')),
     path('admin/', admin.site.urls),
     #url('^$',views.welcome, name='welcome'),
+    url('cart', views.cart, name='cart'),
     path('home',views.home, name='home2'),
     path('feedback',views.feedback, name='feedback'),
     url('view_info',views.view_info),
