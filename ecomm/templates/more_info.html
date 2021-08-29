@@ -3,6 +3,7 @@
 {% block content %}
  {{content}}
 
+ <section class="section">
  <table class="table table-bordered">
     {% for key,value in content.items %}
     <!-- tr stands for table row.  -->
@@ -19,6 +20,7 @@
     </tr>
     {% endfor %}
 </table>
+</section>
 
 <button><a href="/buy_now/?id2={{ content|get_id_dict }}">Buy Now</a></button>
 {% endblock %}

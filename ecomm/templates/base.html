@@ -5,16 +5,87 @@
   <title>Ecomm</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
 
-  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"> 
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <header class="l-header">
+    <nav class="nav bd-grid">
+      <div>
+        <a href="#" class="nav__logo">MITI</a>
+      </div>
+
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li class="nav__item"><a href="#home" class="nav__link">Home</a></li>
+          <li class="nav__item"><a href="#categories" class="nav__link">Categories</a></li>
+          <li class="nav__item"><a href="{% url 'cart' %}" class="nav__link">Cart</a></li>
+        </ul>
+      </div>
+
+      <div><i class="uil uil-shopping-bag nav__cart"></i>
+        <i class="uil uil-ellipsis-v nav__toggle" id="nav-toggle"></i></div>
+    </nav>
+  </header>
+  
+  {% block content %}
+  {% endblock %}
+
+  <footer class="footer section">
+    <div class="footer__container bd-grid">
+      <div class="footer__box">
+        <h3 class="footer__title">SARA</h3>
+        <p class="footer__deal">Products store</p>
+        <a href="#">
+          <img src="" alt="" class="footer__store">
+        </a>
+      </div>
+
+      <div class="footer__box">
+        <h3 class="footer__title">EXPLORE</h3>
+        <ul>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+        </ul>
+      </div>
+
+      <div class="footer__box">
+        <h3 class="footer__title">EXPLORE</h3>
+        <ul>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+        </ul>
+      </div>
+
+      <div class="footer__box">
+        <h3 class="footer__title">EXPLORE</h3>
+        <ul>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+          <li><a href="#" class="footer__link"></a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </footer>
+
+
+  <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/cart.js' %}"></script>
+</body>
+</html>
+
+
+
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <form class="form-inline">
     <div class="input-group">
       <div class="input-group-prepend">
@@ -27,11 +98,4 @@
   <span><a href="{% url 'logout' %}">Logout</a></span>
   <span><a href="{% url 'cart' %}">Cart</a></span>
 </nav>
-<br>
-
-<div class="container">
-{% block content %}
-{% endblock %}
-</div>
-</body>
-</html>
+<br> -->

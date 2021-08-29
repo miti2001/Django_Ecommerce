@@ -4,18 +4,45 @@
 
 <!-- {{content}}
 Used if we want to display the list of tuple in the webpage -->
+<div class="section">
+    
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col">Product Id</div>
+        <div class="col">Name</div>
+        <div class="col">Amount</div>
+        <div class="col">More Info</div>
+        <div class="col">Add</div>
+      </li>
 
-<table class="table table-bordered">
+      {% for row in content %}
+      
+      <li class="table-row">
+        {% for item in row %}
+        <div class="col" data-label="Job Id">{{item}}</div>
+        {% endfor %}
+        <a href="/more_info/?id={{ row | get_id }}">Click here</a>
+        <button class="add-btn update-cart" data-product="{{item.id}}" data-action="add">+</button>
+      </li>
+      {% endfor %}
+      
+    </ul>
+  </div>
+
+{% endblock %}
+
+<!--
+    <table class="table table-bordered">
     <tr>
         <td>ID</td>
         <td>Name</td>
         <td>Price</td>
         <td>More Info</td>
     </tr>
-    <!-- tr stands for table row.  -->
+    tr stands for table row.  
     {% for row in content %}
     <tr>
-        <!-- td used for a particular cell in the row.  -->
+        <td used for a particular cell in the row.>
         {% for item in row %}
         <td>
             {{item}}
@@ -27,4 +54,4 @@ Used if we want to display the list of tuple in the webpage -->
     </tr>
     {% endfor %}
 </table>
-{% endblock %}
+-->

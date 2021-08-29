@@ -1,12 +1,81 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-My name is {{name}}
+    <!-- <section class="home" id="home">
+        <div class="home__container bd-grid">
+            <div class="home__data">
+                <h1 class="home__title">NEW<br><span>ARRIVALS</span></h1>
+                <a href="#featured" class="button">GO Shopping</a>
+            </div>
+
+            <img src="{% static 'images/home.svg' %}" alt="" class="home__img">
+        </div>
+    </section> -->
+
+    <section class="new section" id="new">
+        <h2 class="section-title">CATEGORIES
+        </h2>
+        <a href="#" class="section-all">View all</a>
+
+        <div class="new__container bd-grid">
+            <div class="new__box new__card">
+                <img src="{% static 'images/elec.jpeg' %}" alt="" class="new__img">
+                
+                <!-- <div class="container">
+                    <h4><b>John Doe</b></h4>
+                    <p>Architect & Engineer</p>
+                </div> -->
+
+                <div class="new__link">
+                    <a href="view_info/?category=Electronincs" class="button">Electronics</a>
+                </div>
+            </div>
+
+            <div class="new__box">
+                <img src="{% static 'images/clothes.jpg' %}" alt="" class="new__img">
+                
+                <div class="new__link">
+                    <a href="view_info/?category=Clothing" class="button">Clothing</a>
+                </div>
+            </div>
+
+            <div class="new__box">
+                <img src="{% static 'images/cosmetics1.png' %}" alt="" class="new__img">
+                
+                <div class="new__link">
+                    <a href="view_info/?category=Cosmetics" class="button">Cosmetics</a>
+                </div>
+            </div>
+
+            <div class="new__box">
+                <img src="{% static 'images/stationary.jpg' %}" alt="" class="new__img">
+            
+                <div class="new__link">
+                    <a href="view_info/?category=Stationary" class="button">Stationary</a>
+                </div>
+            </div>
+
+            <div class="new__box">
+                <img src="{% static 'images/sports.jpeg' %}" alt="" class="new__img">
+            
+                <div class="new__link">
+                    <a href="view_info/?category=Sports" class="button">Sports</a>
+                </div>
+            </div>
+        </div>
+
+
+    </section>
+
+{% endblock %}
+
+
+<!-- My name is {{name}}
 
 <div class="container">
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap">
-        Do not need to load static for this method  -->
+        <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap">
+        Do not need to load static for this method
         <img src="{% static 'images/elec.jpg' %}">
         <div class="card-body">
         <h5 class="card-title">Electronics</h5>
@@ -16,7 +85,7 @@ My name is {{name}}
     </div>
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap"> -->
+
         <div class="card-body">
         <h5 class="card-title">Clothing</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -25,7 +94,7 @@ My name is {{name}}
     </div>
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap"> -->
+
         <div class="card-body">
         <h5 class="card-title">Cosmetics</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -34,7 +103,7 @@ My name is {{name}}
     </div>
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap"> -->
+
         <div class="card-body">
         <h5 class="card-title">Stationary</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -43,13 +112,11 @@ My name is {{name}}
     </div>
 
     <div class="card" style="width: 18rem;">
-        <!-- <img class="card-img-top" src="static/images/elec.jpg" alt="Card image cap"> -->
+
         <div class="card-body">
         <h5 class="card-title">Sports</h5>
         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
         <a href="view_info/?category=Sports" class="btn btn-primary">View>></a>
         </div>
     </div>
-</div>
-
-{% endblock %}
+</div> -->
